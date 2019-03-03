@@ -8,7 +8,7 @@ import {DropboxService} from './dropbox-service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Private Pass';
+  title = 'Password Manager';
 
   constructor(
     private dropboxService: DropboxService,
