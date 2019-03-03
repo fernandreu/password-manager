@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-content>
+    <p>
+      <b>PrivatePass</b> is a password manager which stores all information in the cloud. This is encrypted with a
+      master password, which is <b>never</b> stored anywhere. Your data is secure... as long as you remember your
+      own master password
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-raised-button color="primary" [href]="authUrl()">
+      <fa-icon [icon]="['fab', 'dropbox']"></fa-icon>
+      Sign In with Dropbox
+    </a>
+  </mat-card-actions>
+</mat-card>

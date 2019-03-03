@@ -1,0 +1,52 @@
+mat-card {
+  margin-top: 8px;
+  background-color: #cae3e8;
+}
+
+mat-panel-title, mat-panel-description {
+  flex-basis: 0;
+}
+
+mat-panel-title {
+  font-weight: 500;
+}
+
+mat-panel-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.field-actions button {
+  margin: 4px 4px 0 0;
+}
+
+.main-fields {
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: auto;
+  display: block;
+}
+
+.hidden-checkbox {
+  margin-bottom: 20px;
+}
+
+.card-color {
+  display: inline-block;
+  border: 1px solid black;
+  border-radius: 4px;
+  width: 16px;
+  margin-top: 0;
+  margin-bottom: -4px;
+  height: 16px;
+}
+
+mat-card-actions {
+  margin: 12px 0 0 0;
+
+  button {
+    margin: 4px 0 0 12px;
+  }
+}

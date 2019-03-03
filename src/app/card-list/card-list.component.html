@@ -1,0 +1,15 @@
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <mat-card
+          class="example-box"
+          *ngFor="let card of data"
+          [style.background-color]="card.color"
+          [style.color]="isDark(card.color) ? 'white' : 'black'"
+          (click)="openCard(card)"
+          cdkDrag>
+    <fa-icon *ngIf="card.faIcon() !== null" [icon]="card.faIcon()"></fa-icon>
+    {{card.title}}
+    <button mat-button class="close-button" (click)="removeCard(card)">
+        <fa-icon [icon]="['fas', 'times']"></fa-icon>
+    </button>
+  </mat-card>
+</div>
