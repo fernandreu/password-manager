@@ -1,3 +1,5 @@
+import {FaIconComponent} from '@fortawesome/angular-fontawesome';
+
 /**
  * Class which holds all properties related to an individual field inside a card
  */
@@ -48,8 +50,10 @@ export class PassCard {
     const parts = this.icon.split(' ');
 
     // Second part might start with 'fa-', so let's remove it
-    if (parts.length > 1 && parts[1].startsWith('fa-')) {
+    if (parts.length === 2 && parts[1].startsWith('fa-')) {
       parts[1] = parts[1].substring(3);
+    } else {
+      return null;
     }
 
     return parts;
@@ -95,7 +99,7 @@ export class PassSession {
   public cards = new Array<PassCard>();
 
   public constructor(init?: Partial<PassSession>) {
-    if (init !== null && init.version !== undefined && init.version < PassSession.LatestVersion) {
+    if (init !== undefined && init.version !== undefined && init.version < PassSession.LatestVersion) {
       init = PassSession.migrate(init);
     }
     Object.assign(this, init);

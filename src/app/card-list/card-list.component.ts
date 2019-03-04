@@ -5,6 +5,7 @@ import {SessionDataService} from '../session-data.service';
 import {PassCard} from '../pass-model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Utils} from '../utils';
+import {DropboxService} from '../dropbox-service';
 
 @Component({
   selector: 'app-card-list',
@@ -21,6 +22,7 @@ export class CardListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
+    private dropboxService: DropboxService,
     private sessionDataService: SessionDataService,
   ) { }
 
@@ -43,5 +45,17 @@ export class CardListComponent implements OnInit {
   openCard(card: PassCard) {
     const index = this.data.indexOf(card);
     this.router.navigateByUrl('item/' + index);
+  }
+
+  saveSession() {
+    this.dropboxService.saveData(this.sessionDataService.accessToken, this.sessionDataService.session, this.sessionDataService.passwordHash)
+      .then(() => console.log('Saved'))
+      .catch((error) => console.error(error));
+  }
+
+  addCard() {
+    const card = new PassCard({title: 'New card', color: '#cccccc'});
+    this.data.push(card);
+    this.openCard(card);
   }
 }

@@ -4,3 +4,11 @@ Manage your own passwords on any device, with the confidence that only you have 
 
 The passwords are stored in Dropbox (more cloud services to come), encrypted by a master 
 password.
+
+
+## Try it
+
+Check the version hosted on GitHub Pages:
+
+https://fernandreu.github.io/password-manager/
+ 

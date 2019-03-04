@@ -1,3 +1,14 @@
+
+<mat-toolbar color="accent">
+  <span>List of cards</span>
+  <span class="spacer"></span>
+  <button mat-raised-button color="primary" (click)="addCard()">
+    Add card
+  </button>
+  <button mat-raised-button color="warn" (click)="saveSession()">
+    Save session
+  </button>
+</mat-toolbar>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <mat-card
           class="example-box"

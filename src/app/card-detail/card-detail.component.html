@@ -1,11 +1,23 @@
 <mat-card [style.background]="tint(card.color, 90)">
   <mat-card-title>
-    <fa-icon *ngIf="card.faIcon() !== null" [icon]="card.faIcon()"></fa-icon>
+    <fa-icon *ngIf="card.faIcon() !== null" [icon]="card.faIcon()" style="height: 20px;"></fa-icon>
     {{card.title}}
   </mat-card-title>
   <mat-card-content>
     <div class="main-fields">
       <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Card Title</mat-panel-title>
+            <mat-panel-description>{{card.title}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Card title" [(ngModel)]="card.title">
+          </mat-form-field>
+
+        </mat-expansion-panel>
+
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>Card Color</mat-panel-title>
@@ -21,6 +33,19 @@
             <input matInput type="text" placeholder="Card color" [(ngModel)]="card.color">
           </mat-form-field>
 
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>Card Icon</mat-panel-title>
+            <mat-panel-description>{{card.icon}}</mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <mat-form-field>
+            <input matInput type="text" placeholder="Card icon" [(ngModel)]="card.icon">
+          </mat-form-field>
+
+          <div><a mat-raised-button color="primary" href="https://fontawesome.com/icons?d=gallery">Check FontAwesome gallery</a></div>
         </mat-expansion-panel>
 
         <mat-expansion-panel>

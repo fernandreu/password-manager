@@ -1,11 +1,21 @@
 <mat-card>
     <mat-card-content>
-        <mat-form-field>
-            <input matInput type="password" autocomplete="current-password" placeholder="Password" [(ngModel)]="password"/>
-        </mat-form-field>
+        <div>
+            <mat-form-field>
+                <input matInput type="password" autocomplete="current-password" placeholder="Password" [(ngModel)]="password"/>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field *ngIf="newAccount">
+                <input matInput type="password" autocomplete="current-password" placeholder="Confirm password" [(ngModel)]="confirmPassword"/>
+            </mat-form-field>
+        </div>
+        <div *ngIf="errorMessage() !== null" class="description">
+            {{errorMessage()}}
+        </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="logIn()">Log In</button>
+        <button mat-raised-button color="primary" (click)="logIn()" [disabled]="errorMessage() !== null">Log In</button>
         <button mat-raised-button color="warn">Forgot your password?</button>
     </mat-card-actions>
 </mat-card>

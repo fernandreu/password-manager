@@ -1,10 +1,6 @@
 <div class="main-canvas">
     <mat-toolbar color="primary">
         <span>{{title}}</span>
-        <span class="spacer"></span>
-        <button mat-raised-button color="warn" *ngIf="sessionIsActive()" (click)="saveSession()">
-            Save session
-        </button>
     </mat-toolbar>
     <router-outlet></router-outlet>
 </div>

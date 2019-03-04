@@ -1,3 +1,7 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
 .example-list {
   //border: solid 1px #ccc;
   //min-height: 60px;
@@ -6,6 +10,7 @@
   background: white;
   border-radius: 4px;
   overflow: hidden;
+  margin: 0 12px 0 12px;
 }
 
 .example-box {

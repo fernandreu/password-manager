@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {SessionDataService} from './session-data.service';
-import {DropboxService} from './dropbox-service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +7,4 @@ import {DropboxService} from './dropbox-service';
 })
 export class AppComponent {
   title = 'Password Manager';
-
-  constructor(
-    private dropboxService: DropboxService,
-    private sessionDataService: SessionDataService,
-  ) {
-
-  }
-
-  sessionIsActive() {
-    return this.sessionDataService.session !== null && this.sessionDataService.accessToken !== null && this.sessionDataService.passwordHash !== null;
-  }
-
-  saveSession() {
-    this.dropboxService.saveData(this.sessionDataService.accessToken, this.sessionDataService.session, this.sessionDataService.passwordHash)
-      .then(() => console.log('Saved'))
-      .catch((error) => console.error(error));
-  }
 }
