@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "private-pass-angular": {
+    "password-manager": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/private-pass-angular",
+            "outputPath": "dist/password-manager",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "private-pass-angular:build"
+            "browserTarget": "password-manager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "private-pass-angular:build:production"
+              "browserTarget": "password-manager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "private-pass-angular:build"
+            "browserTarget": "password-manager:build"
           }
         },
         "test": {
@@ -104,7 +104,7 @@
         }
       }
     },
-    "private-pass-angular-e2e": {
+    "password-manager-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -113,11 +113,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "private-pass-angular:serve"
+            "devServerTarget": "password-manager:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "private-pass-angular:serve:production"
+              "devServerTarget": "password-manager:serve:production"
             }
           }
         },
@@ -133,7 +133,7 @@
       }
     }
   },
-  "defaultProject": "private-pass-angular",
+  "defaultProject": "password-manager",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"
