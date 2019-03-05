@@ -1,6 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardDetailComponent } from './card-detail.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {MaterialModule} from '../material';
+import {FormsModule} from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {AppRoutingModule} from '../app-routing.module';
+import {LandingComponent} from '../landing/landing.component';
+import {LoginComponent} from '../login/login.component';
+import {CardListComponent} from '../card-list/card-list.component';
+import {DataService, IDataService} from '../services/data-service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {PassCard, PassSession} from '../model/pass-model';
+import {ActivatedRoute} from '@angular/router';
+import {of} from 'rxjs';
+
+class MockDataService implements IDataService {
+  accessToken = '';
+  cloudService = 'dropbox';
+  passwordHash = '1234';
+  session: PassSession;
+
+  constructor() {
+    console.log('Creating MockDataService');
+    this.session = new PassSession();
+    this.session.cards.push(new PassCard());
+  }
+}
 
 describe('CardDetailComponent', () => {
   let component: CardDetailComponent;
@@ -8,7 +34,24 @@ describe('CardDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CardDetailComponent ]
+      declarations: [
+        CardDetailComponent,
+        LoginComponent,
+        LandingComponent,
+        CardListComponent,
+      ],
+      imports: [
+        FontAwesomeModule,
+        MaterialModule,
+        FormsModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        DragDropModule,
+      ],
+      providers: [
+        { provide: DataService, useClass: MockDataService },
+        { provide: ActivatedRoute, useValue: {params: of({ id: '0'}) } },
+      ],
     })
     .compileComponents();
   }));

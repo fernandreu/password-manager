@@ -1,11 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {SessionDataService} from '../session-data.service';
-import {PassCard} from '../pass-model';
+import {PassCard} from '../model/pass-model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {Utils} from '../utils';
-import {DropboxService} from '../dropbox-service';
+import {Utils} from '../model/utils';
+import {DataService, IDataService} from '../services/data-service';
+import {CloudServiceProvider} from '../services/cloud-service-provider';
 
 @Component({
   selector: 'app-card-list',
@@ -22,12 +22,12 @@ export class CardListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private dropboxService: DropboxService,
-    private sessionDataService: SessionDataService,
+    private cloudServiceProvider: CloudServiceProvider,
+    @Inject(DataService) private dataService: IDataService,
   ) { }
 
   ngOnInit() {
-    const session = this.sessionDataService.session;
+    const session = this.dataService.session;
     if (session === null) {
       this.router.navigateByUrl('/landing');
     }
@@ -48,7 +48,7 @@ export class CardListComponent implements OnInit {
   }
 
   saveSession() {
-    this.dropboxService.saveData(this.sessionDataService.accessToken, this.sessionDataService.session, this.sessionDataService.passwordHash)
+    this.cloudServiceProvider.getCloudService().saveData(this.dataService.accessToken, this.dataService.session, this.dataService.passwordHash)
       .then(() => console.log('Saved'))
       .catch((error) => console.error(error));
   }

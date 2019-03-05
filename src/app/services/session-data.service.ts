@@ -6,7 +6,8 @@
  */
 
 import { Injectable } from '@angular/core';
-import { PassSession } from './pass-model';
+import { PassSession } from '../model/pass-model';
+import {IDataService} from './data-service';
 
 const PasswordHashKey = 'passwordHash';
 const SessionKey = 'passSession';
@@ -16,7 +17,9 @@ const AccessTokenKey = 'accessToken';
 @Injectable({
   providedIn: 'root'
 })
-export class SessionDataService {
+export class SessionDataService implements IDataService {
+
+  public cloudService = 'dropbox';
 
   private _passwordHash: string = null;
   private _session: PassSession = null;

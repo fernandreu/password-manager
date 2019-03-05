@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
-import {environment} from '../environments/environment';
-import {Utils} from './utils';
+import {environment} from '../../environments/environment';
+import {Utils} from '../model/utils';
 import {Dropbox} from 'dropbox';
+import {ICloudService} from './cloud-service';
 
 const CLIENT_ID = 'fe6hp2qg2ipodyz';
 
+
 @Injectable({ providedIn: 'root' })
-export class DropboxService {
+export class DropboxService implements ICloudService {
 
   getAuthenticationUrl(): string {
     const dbx = new Dropbox({clientId: CLIENT_ID});

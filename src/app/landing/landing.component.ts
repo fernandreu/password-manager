@@ -1,6 +1,6 @@
 // Component for the landing page, hence the name
-import { Component, OnInit } from '@angular/core';
-import {DropboxService} from '../dropbox-service';
+import {Component, OnInit} from '@angular/core';
+import {DropboxService} from '../services/dropbox-service';
 
 @Component({
   selector: 'app-landing',
@@ -9,12 +9,14 @@ import {DropboxService} from '../dropbox-service';
 })
 export class LandingComponent implements OnInit {
 
-  constructor(private dropboxService: DropboxService) { }
+  constructor(
+    private dropboxService: DropboxService
+  ) { }
 
   ngOnInit() {
   }
 
-  authUrl(): string {
+  dropboxAuthUrl(): string {
     return this.dropboxService.getAuthenticationUrl();
   }
 }

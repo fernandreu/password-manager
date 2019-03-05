@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SessionDataService} from '../session-data.service';
-import {PassCard, PassField} from '../pass-model';
-import {Utils} from '../utils';
+import {PassCard, PassField} from '../model/pass-model';
+import {Utils} from '../model/utils';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {DataService, IDataService} from '../services/data-service';
 
 @Component({
   selector: 'app-card-detail',
@@ -21,11 +21,11 @@ export class CardDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private sessionDataService: SessionDataService
+    @Inject(DataService) private dataService: IDataService
   ) { }
 
   ngOnInit() {
-    const session = this.sessionDataService.session;
+    const session = this.dataService.session;
     if (session === null) {
       // TODO: Reroute this to the sign in page
     }

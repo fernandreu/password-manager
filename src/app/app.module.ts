@@ -17,6 +17,9 @@ import {CardDetailComponent} from './card-detail/card-detail.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MaterialModule} from './material';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {DataService} from './services/data-service';
+import {SessionDataService} from './services/session-data.service';
+import {CloudServiceProvider} from './services/cloud-service-provider';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MaterialModule,
     DragDropModule,
   ],
-  providers: [],
+  providers: [
+    CloudServiceProvider,
+    { provide: DataService, useClass: SessionDataService },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import {DropboxService} from '../dropbox-service';
-import {Utils} from '../utils';
+import {Component, Inject, OnInit} from '@angular/core';
+import {Utils} from '../model/utils';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {PassSession} from '../pass-model';
-import {SessionDataService} from '../session-data.service';
+import {PassSession} from '../model/pass-model';
+import {DataService, IDataService} from '../services/data-service';
+import {CloudServiceProvider} from '../services/cloud-service-provider';
 
 @Component({
   selector: 'app-login',
@@ -29,13 +29,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private dropboxService: DropboxService,
+    private cloudServiceProvider: CloudServiceProvider,
     private router: Router,
-    private sessionDataService: SessionDataService,
+    @Inject(DataService) private dataService: IDataService,
   ) { }
 
   ngOnInit() {
-    this.dropboxService.getData(this.dropboxService.getAccessTokenByLocation(location))
+    const service = this.cloudServiceProvider.getCloudService();
+    service.getData(service.getAccessTokenByLocation(location))
       .then(result => {
         this.encryptedData = result;
       })
@@ -64,9 +65,9 @@ export class LoginComponent implements OnInit {
       session = new PassSession();
     }
 
-    this.sessionDataService.passwordHash = hash;
-    this.sessionDataService.session = session;
-    this.sessionDataService.accessToken = this.dropboxService.getAccessTokenByLocation(location);
+    this.dataService.passwordHash = hash;
+    this.dataService.session = session;
+    this.dataService.accessToken = this.cloudServiceProvider.getCloudService().getAccessTokenByLocation(location);
     this.router.navigateByUrl('/list');
   }
 
