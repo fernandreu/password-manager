@@ -12,3 +12,7 @@ Check the version hosted on GitHub Pages:
 
 https://fernandreu.github.io/password-manager/
  
+ 
+## Build Status
+
+[![Build Status](https://travis-ci.org/fernandreu/password-manager.svg?branch=master)](https://travis-ci.org/fernandreu/password-manager)
