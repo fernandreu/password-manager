@@ -1,4 +1,5 @@
 import { AppPage } from './app.po';
+import {by, element} from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
@@ -7,8 +8,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should have toolbar with app title', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to private-pass-angular!');
+    const toolbar = element(by.className('mat-toolbar'));
+    expect(toolbar.getText()).toContain('Password Manager');
   });
 });
