@@ -22,7 +22,7 @@ install:
 script:
   - npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   - npm run e2e -- --protractor-config=e2e/protractor-ci.conf.js
-  - ng build --prod --base-href https://fernandreu.github.io/password-manager/
+  - ng build --prod --base-href https://fernando.andreu.info/password-manager/
   - cp dist/password-manager/index.html dist/password-manager/404.html
 
 deploy:
