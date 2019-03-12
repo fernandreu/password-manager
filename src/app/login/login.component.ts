@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    console.log(`The password is: ${this.password}`);
+    // console.log(`The password is: ${this.password}`);
 
     const hash = Utils.passwordHash(this.password);
     let session: PassSession = null;
