@@ -27,5 +27,5 @@ that needs to be done in terms of setup / deployment:
 3. Back in your repository, update the hard-coded app IDs / secrets of each cloud service
 4. Make sure you have a suitable version of Node.js installed in your local machine. The CI pipeline uses version 8, but
    the latest version should work well too
-5. Configure Travis-CI to automatically build / test the app when commits gets pushed (just as this repository does in 
+5. Configure Travis-CI to automatically build / test the app when commits get pushed (just as this repository does in 
    the `gh-pages` branch)
