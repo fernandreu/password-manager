@@ -3,6 +3,7 @@ import {environment} from '../../environments/environment';
 import {Utils} from '../model/utils';
 import {Dropbox} from 'dropbox';
 import {ICloudService} from './cloud-service';
+import fetch from 'isomorphic-fetch';
 
 const CLIENT_ID = 'fe6hp2qg2ipodyz';
 
@@ -11,7 +12,7 @@ const CLIENT_ID = 'fe6hp2qg2ipodyz';
 export class DropboxService implements ICloudService {
 
   getAuthenticationUrl(): string {
-    const dbx = new Dropbox({clientId: CLIENT_ID});
+    const dbx = new Dropbox({clientId: CLIENT_ID, fetch: fetch} as any);
     return dbx.getAuthenticationUrl(environment.baseUrl + '/login');
   }
 
@@ -39,7 +40,7 @@ export class DropboxService implements ICloudService {
   }
 
   getData(accessToken: string): Promise<ArrayBuffer> {
-    const dbx = new Dropbox({ accessToken: accessToken });
+    const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
     return new Promise((resolve, reject) => {
       dbx.filesGetMetadata({ path: '/data.json' })
         .then( metaData => {
@@ -52,7 +53,7 @@ export class DropboxService implements ICloudService {
   }
 
   saveData(accessToken: string, data: any, passwordHash: string): Promise<boolean> {
-    const dbx = new Dropbox({ accessToken: accessToken });
+    const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
     const encrypted = Utils.encryptData(data, passwordHash);
     // Save a backup first
     const backupPath = '/data-' + new Date() + '.json';
@@ -72,7 +73,7 @@ export class DropboxService implements ICloudService {
   }
 
   private renameFile(oldName: string, newName: string, accessToken: string): Promise<boolean> {
-    const dbx = new Dropbox({ accessToken: accessToken });
+    const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
     return new Promise((resolve, reject) => {
       dbx.filesMoveV2({ from_path: oldName, to_path: newName, autorename: true })
         .then(() => resolve(true))
