@@ -14,7 +14,7 @@ https://fernandreu.github.io/password-manager/
  
 # Build status
 
-[![Build Status](https://travis-ci.org/fernandreu/password-manager.svg?branch=master)](https://travis-ci.org/fernandreu/password-manager)
+[![Build Status](https://travis-ci.com/fernandreu/password-manager.svg?branch=master)](https://travis-ci.com/fernandreu/password-manager)
 
 
 # Build your own
