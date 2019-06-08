@@ -1,5 +1,7 @@
 # Password Manager
 
+[![Build Status](https://travis-ci.com/fernandreu/password-manager.svg?branch=master)](https://travis-ci.com/fernandreu/password-manager)
+
 Manage your own passwords on any device, with the confidence that only you have access to them.
 
 The passwords are stored in Dropbox (with more cloud services to come), encrypted by a master password.
@@ -10,11 +12,6 @@ The passwords are stored in Dropbox (with more cloud services to come), encrypte
 Check the version hosted on GitHub Pages:
 
 https://fernandreu.github.io/password-manager/
- 
- 
-# Build status
-
-[![Build Status](https://travis-ci.com/fernandreu/password-manager.svg?branch=master)](https://travis-ci.com/fernandreu/password-manager)
 
 
 # Build your own
