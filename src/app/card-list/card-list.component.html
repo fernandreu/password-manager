@@ -2,6 +2,13 @@
 <mat-toolbar color="accent">
   <span>List of cards</span>
   <span class="spacer"></span>
+
+  <mat-form-field class="card-filter" >
+    <input matInput placeholder="Filter" [(ngModel)]="currentFilter">
+    <button mat-button *ngIf="currentFilter" matSuffix mat-icon-button aria-label="Clear" (click)="currentFilter=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
   <button mat-raised-button color="primary" (click)="addCard()">
     Add card
   </button>

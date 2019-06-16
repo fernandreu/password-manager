@@ -14,8 +14,18 @@ import {CloudServiceProvider} from '../services/cloud-service-provider';
 })
 export class CardListComponent implements OnInit {
 
+  private _currentFilter = '';
+
   public isDark = Utils.isDark;
 
+  /**
+   * This holds the full set of data corresponding to the session
+   */
+  private fullData: Array<PassCard> = null;
+
+  /**
+   * This holds the data currently being visualized, with filtering applied if needed
+   */
   public data: Array<PassCard> = null;
 
   constructor(
@@ -26,16 +36,27 @@ export class CardListComponent implements OnInit {
     @Inject(DataService) private dataService: IDataService,
   ) { }
 
+  get currentFilter() {
+    return this._currentFilter;
+  }
+
+  set currentFilter(value: string) {
+    this._currentFilter = value;
+    this.applyFilter();
+  }
+
   ngOnInit() {
     const session = this.dataService.session;
     if (session === null) {
       this.router.navigateByUrl('/landing');
     }
-    this.data = session.cards;
+    this.fullData = session.cards;
+    this.data = this.fullData;
   }
 
   removeCard(card: PassCard) {
-    this.data.splice(this.data.indexOf(card), 1);
+    this.fullData.splice(this.data.indexOf(card), 1);
+    this.applyFilter();
   }
 
   drop(event: CdkDragDrop<PassCard[]>) {
@@ -43,19 +64,34 @@ export class CardListComponent implements OnInit {
   }
 
   openCard(card: PassCard) {
-    const index = this.data.indexOf(card);
+    const index = this.fullData.indexOf(card);
     this.router.navigateByUrl('item/' + index);
   }
 
   saveSession() {
-    this.cloudServiceProvider.getCloudService().saveData(this.dataService.accessToken, this.dataService.session, this.dataService.passwordHash)
+    this.cloudServiceProvider.getCloudService().saveData(
+      this.dataService.accessToken,
+      this.dataService.session,
+      this.dataService.passwordHash
+    )
       .then(() => console.log('Saved'))
       .catch((error) => console.error(error));
   }
 
   addCard() {
     const card = new PassCard({title: 'New card', color: '#cccccc'});
-    this.data.push(card);
+    this.fullData.push(card);
+    this.applyFilter();
     this.openCard(card);
+  }
+
+  applyFilter() {
+    if (this._currentFilter === '') {
+      // This will allow card reordering to work
+      this.data = this.fullData;
+    } else {
+      // TODO: There should be some visual indication that data ordering will just be temporary
+      this.data = this.fullData.filter(x => x.title.includes(this.currentFilter));
+    }
   }
 }
