@@ -5,6 +5,19 @@
 .card-filter {
   font-size: 14px;
   width: 200px;
+  margin-right: 8px;
+}
+
+@media screen and (min-width: 512px) {
+  .reduced-size {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 511px) {
+  .full-size {
+    display: none;
+  }
 }
 
 .example-list {

@@ -1,20 +1,31 @@
 
 <mat-toolbar color="accent">
-  <span>List of cards</span>
-  <span class="spacer"></span>
+  <mat-toolbar-row>
+    <span>List of cards</span>
+    <span class="spacer"></span>
 
-  <mat-form-field class="card-filter" >
-    <input matInput placeholder="Filter" [(ngModel)]="currentFilter">
-    <button mat-button *ngIf="currentFilter" matSuffix mat-icon-button aria-label="Clear" (click)="currentFilter=''">
-      <mat-icon>close</mat-icon>
+    <mat-form-field class="card-filter full-size" >
+      <input matInput placeholder="Filter" [(ngModel)]="currentFilter">
+      <button mat-button *ngIf="currentFilter" matSuffix mat-icon-button aria-label="Clear" (click)="currentFilter=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="addCard()">
+      Add card
     </button>
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="addCard()">
-    Add card
-  </button>
-  <button mat-raised-button color="warn" (click)="saveSession()">
-    Save session
-  </button>
+    <button mat-raised-button color="warn" (click)="saveSession()">
+      Save session
+    </button>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="reduced-size">
+    <mat-form-field class="card-filter" >
+      <input matInput placeholder="Filter" [(ngModel)]="currentFilter">
+      <button mat-button *ngIf="currentFilter" matSuffix mat-icon-button aria-label="Clear" (click)="currentFilter=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-toolbar-row>
 </mat-toolbar>
 <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
   <mat-card
