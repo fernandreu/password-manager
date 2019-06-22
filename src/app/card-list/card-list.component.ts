@@ -6,6 +6,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {Utils} from '../model/utils';
 import {DataService, IDataService} from '../services/data-service';
 import {CloudServiceProvider} from '../services/cloud-service-provider';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-card-list',
@@ -33,6 +34,7 @@ export class CardListComponent implements OnInit {
     private router: Router,
     private location: Location,
     private cloudServiceProvider: CloudServiceProvider,
+    private snackBar: MatSnackBar,
     @Inject(DataService) private dataService: IDataService,
   ) { }
 
@@ -74,8 +76,18 @@ export class CardListComponent implements OnInit {
       this.dataService.session,
       this.dataService.passwordHash
     )
-      .then(() => console.log('Saved'))
-      .catch((error) => console.error(error));
+      .then(() => {
+        console.log('Saved');
+        this.snackBar.open('Session was saved successfully', '', {
+          duration: 3000,
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        this.snackBar.open('Session could not be saved', '', {
+          duration: 3000,
+        });
+      });
   }
 
   addCard() {
