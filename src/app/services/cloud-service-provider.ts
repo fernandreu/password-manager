@@ -1,8 +1,9 @@
-import {Inject} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {DataService, IDataService} from './data-service';
 import {ICloudService} from './cloud-service';
 import {DropboxService} from './dropbox-service';
 
+@Injectable()
 export class CloudServiceProvider {
   constructor(
     @Inject(DataService) private dataService: IDataService,

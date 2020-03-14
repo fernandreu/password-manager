@@ -7,6 +7,10 @@
       "../node_modules/@types"
     ]
   },
+  "files": [
+    "main.ts",
+    "polyfills.ts"
+  ],
   "exclude": [
     "test.ts",
     "**/*.spec.ts"

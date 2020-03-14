@@ -1,6 +1,6 @@
 // Component for the landing page, hence the name
 import {Component, OnInit} from '@angular/core';
-import {DropboxService} from '../services/dropbox-service';
+import {DropboxService} from 'src/app/services/dropbox-service';
 
 @Component({
   selector: 'app-landing',

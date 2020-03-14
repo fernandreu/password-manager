@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Utils} from '../model/utils';
+import {Utils} from 'src/app/model/utils';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {PassSession} from '../model/pass-model';
-import {DataService, IDataService} from '../services/data-service';
-import {CloudServiceProvider} from '../services/cloud-service-provider';
+import {PassSession} from 'src/app/model/pass-model';
+import {DataService, IDataService} from 'src/app/services/data-service';
+import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
 
 @Component({
   selector: 'app-login',

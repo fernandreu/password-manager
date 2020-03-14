@@ -1,5 +1,5 @@
 import {InjectionToken} from '@angular/core';
-import {PassSession} from '../model/pass-model';
+import {PassSession} from 'src/app/model/pass-model';
 
 export const DataService = new InjectionToken<IDataService>('dataService');
 

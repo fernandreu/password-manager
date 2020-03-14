@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Location} from '@angular/common';
-import {PassCard} from '../model/pass-model';
+import {PassCard} from 'src/app/model/pass-model';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {Utils} from '../model/utils';
-import {DataService, IDataService} from '../services/data-service';
-import {CloudServiceProvider} from '../services/cloud-service-provider';
-import {MatSnackBar} from '@angular/material';
+import {Utils} from 'src/app/model/utils';
+import {DataService, IDataService} from 'src/app/services/data-service';
+import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-card-list',

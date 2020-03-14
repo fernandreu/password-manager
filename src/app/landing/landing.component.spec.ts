@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingComponent } from './landing.component';
-import {MaterialModule} from '../material';
-import {CloudServiceProvider} from '../services/cloud-service-provider';
+import {MaterialModule} from 'src/app/material';
+import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 describe('LandingComponent', () => {

@@ -1,9 +1,9 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PassCard, PassField} from '../model/pass-model';
-import {Utils} from '../model/utils';
+import {PassCard, PassField} from 'src/app/model/pass-model';
+import {Utils} from 'src/app/model/utils';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {DataService, IDataService} from '../services/data-service';
+import {DataService, IDataService} from 'src/app/services/data-service';
 
 @Component({
   selector: 'app-card-detail',

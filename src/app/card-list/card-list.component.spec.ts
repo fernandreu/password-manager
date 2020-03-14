@@ -1,18 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardListComponent } from './card-list.component';
-import {CardDetailComponent} from '../card-detail/card-detail.component';
-import {LoginComponent} from '../login/login.component';
-import {LandingComponent} from '../landing/landing.component';
+import {CardDetailComponent} from 'src/app/card-detail/card-detail.component';
+import {LoginComponent} from 'src/app/login/login.component';
+import {LandingComponent} from 'src/app/landing/landing.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {MaterialModule} from '../material';
+import {MaterialModule} from 'src/app/material';
 import {FormsModule} from '@angular/forms';
-import {AppRoutingModule} from '../app-routing.module';
+import {AppRoutingModule} from 'src/app/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import {DataService, IDataService} from '../services/data-service';
-import {PassCard, PassSession} from '../model/pass-model';
-import {CloudServiceProvider} from '../services/cloud-service-provider';
+import {DataService, IDataService} from 'src/app/services/data-service';
+import {PassCard, PassSession} from 'src/app/model/pass-model';
+import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
 
 class MockDataService implements IDataService {
   accessToken = '';

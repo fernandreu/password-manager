@@ -2,16 +2,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardDetailComponent } from './card-detail.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {MaterialModule} from '../material';
+import {MaterialModule} from 'src/app/material';
 import {FormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-import {AppRoutingModule} from '../app-routing.module';
-import {LandingComponent} from '../landing/landing.component';
-import {LoginComponent} from '../login/login.component';
-import {CardListComponent} from '../card-list/card-list.component';
-import {DataService, IDataService} from '../services/data-service';
+import {AppRoutingModule} from 'src/app/app-routing.module';
+import {LandingComponent} from 'src/app/landing/landing.component';
+import {LoginComponent} from 'src/app/login/login.component';
+import {CardListComponent} from 'src/app/card-list/card-list.component';
+import {DataService, IDataService} from 'src/app/services/data-service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {PassCard, PassSession} from '../model/pass-model';
+import {PassCard, PassSession} from 'src/app/model/pass-model';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
 

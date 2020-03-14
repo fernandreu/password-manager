@@ -6,7 +6,7 @@
  */
 
 import { Injectable } from '@angular/core';
-import { PassSession } from '../model/pass-model';
+import { PassSession } from 'src/app/model/pass-model';
 import {IDataService} from './data-service';
 
 const PasswordHashKey = 'passwordHash';
