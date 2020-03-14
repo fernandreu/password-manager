@@ -4,8 +4,7 @@ import { CardListComponent } from './card-list.component';
 import {CardDetailComponent} from 'src/app/card-detail/card-detail.component';
 import {LoginComponent} from 'src/app/login/login.component';
 import {LandingComponent} from 'src/app/landing/landing.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {MaterialModule} from 'src/app/material';
+import {MaterialModule} from 'src/app/material.module';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from 'src/app/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -13,6 +12,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {DataService, IDataService} from 'src/app/services/data-service';
 import {PassCard, PassSession} from 'src/app/model/pass-model';
 import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
+import {IconsModule} from '../icons.module';
 
 class MockDataService implements IDataService {
   accessToken = '';
@@ -40,7 +40,7 @@ describe('CardListComponent', () => {
         LoginComponent,
       ],
       imports: [
-        FontAwesomeModule,
+        IconsModule,
         MaterialModule,
         FormsModule,
         AppRoutingModule,

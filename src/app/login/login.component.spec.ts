@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {MaterialModule} from 'src/app/material';
+import {MaterialModule} from 'src/app/material.module';
 import {FormsModule} from '@angular/forms';
 import {AppRoutingModule} from 'src/app/app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -13,6 +12,7 @@ import {PassCard, PassSession} from 'src/app/model/pass-model';
 import {CardListComponent} from 'src/app/card-list/card-list.component';
 import {LandingComponent} from 'src/app/landing/landing.component';
 import {CardDetailComponent} from 'src/app/card-detail/card-detail.component';
+import {IconsModule} from '../icons.module';
 
 class MockDataService implements IDataService {
   accessToken = '';
@@ -40,7 +40,7 @@ describe('LoginComponent', () => {
         CardDetailComponent,
       ],
       imports: [
-        FontAwesomeModule,
+        IconsModule,
         MaterialModule,
         FormsModule,
         AppRoutingModule,

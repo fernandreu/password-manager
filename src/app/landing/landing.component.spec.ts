@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LandingComponent } from './landing.component';
-import {MaterialModule} from 'src/app/material';
+import {MaterialModule} from 'src/app/material.module';
 import {CloudServiceProvider} from 'src/app/services/cloud-service-provider';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {IconsModule} from '../icons.module';
 
 describe('LandingComponent', () => {
   let component: LandingComponent;
@@ -16,7 +16,7 @@ describe('LandingComponent', () => {
       ],
       imports: [
         MaterialModule,
-        FontAwesomeModule,
+        IconsModule,
       ],
       providers: [
         CloudServiceProvider,

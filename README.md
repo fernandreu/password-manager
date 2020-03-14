@@ -16,7 +16,7 @@ https://fernandreu.github.io/password-manager/
 
 # Build your own
 
-This project is a primarily serverless web app developed in Angular 7. To roll your own version, there is little 
+This project is a primarily serverless web app developed in Angular 9. To roll your own version, there is little 
 that needs to be done in terms of setup / deployment:
 
 1. Fork / clone this repository

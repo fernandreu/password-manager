@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CardDetailComponent } from './card-detail.component';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {MaterialModule} from 'src/app/material';
+import {MaterialModule} from 'src/app/material.module';
 import {FormsModule} from '@angular/forms';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {AppRoutingModule} from 'src/app/app-routing.module';
@@ -14,6 +13,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PassCard, PassSession} from 'src/app/model/pass-model';
 import {ActivatedRoute} from '@angular/router';
 import {of} from 'rxjs';
+import {IconsModule} from '../icons.module';
 
 class MockDataService implements IDataService {
   accessToken = '';
@@ -41,7 +41,7 @@ describe('CardDetailComponent', () => {
         CardListComponent,
       ],
       imports: [
-        FontAwesomeModule,
+        IconsModule,
         MaterialModule,
         FormsModule,
         AppRoutingModule,

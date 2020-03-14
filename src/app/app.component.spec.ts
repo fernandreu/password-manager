@@ -7,13 +7,13 @@ import {CardDetailComponent} from './card-detail/card-detail.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {AppRoutingModule} from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MaterialModule} from './material';
+import {MaterialModule} from './material.module';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {DataService} from './services/data-service';
 import {SessionDataService} from './services/session-data.service';
+import {IconsModule} from './icons.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -29,7 +29,7 @@ describe('AppComponent', () => {
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        FontAwesomeModule,
+        IconsModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MaterialModule,
