@@ -36,7 +36,10 @@ export class SessionDataService implements IDataService {
 
   get session() {
     if (this._session === null) {
-      this._session = new PassSession(JSON.parse(sessionStorage.getItem(SessionKey)));
+      const key = sessionStorage.getItem(SessionKey);
+      if (key !== null) {
+        this._session = new PassSession(JSON.parse(key));
+      }
     }
     return this._session;
   }

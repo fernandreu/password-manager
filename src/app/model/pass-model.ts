@@ -99,7 +99,7 @@ export class PassSession {
   public cards = new Array<PassCard>();
 
   public constructor(init?: Partial<PassSession>) {
-    if (init !== undefined && init.version !== undefined && init.version < PassSession.LatestVersion) {
+    if (init !== undefined && init !== null && init.version !== undefined && init.version < PassSession.LatestVersion) {
       init = PassSession.migrate(init);
     }
     Object.assign(this, init);
