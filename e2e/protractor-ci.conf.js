@@ -4,7 +4,7 @@ config.capabilities = {
     browserName: 'chrome',
     chromeOptions: {
         args: ['--headless', '--no-sandbox'],
-        binary: '/usr/bin.chromium-browser'
+        binary: '/usr/bin/chromium-browser'
     }
 };
 
