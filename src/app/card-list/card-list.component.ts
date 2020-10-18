@@ -65,9 +65,9 @@ export class CardListComponent implements OnInit {
     moveItemInArray(this.data, event.previousIndex, event.currentIndex);
   }
 
-  openCard(card: PassCard) {
+  async openCard(card: PassCard) {
     const index = this.fullData.indexOf(card);
-    this.router.navigateByUrl('item/' + index);
+    await this.router.navigateByUrl('item/' + index);
   }
 
   saveSession() {
@@ -90,11 +90,11 @@ export class CardListComponent implements OnInit {
       });
   }
 
-  addCard() {
+  async addCard() {
     const card = new PassCard({title: 'New card', color: '#cccccc'});
     this.fullData.push(card);
     this.applyFilter();
-    this.openCard(card);
+    await this.openCard(card);
   }
 
   applyFilter() {

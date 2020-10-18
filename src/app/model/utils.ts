@@ -1,5 +1,6 @@
 import * as crypto from 'crypto-js';
 import { TinyColor } from '@ctrl/tinycolor';
+import {WordArray} from 'crypto-js';
 
 export class Utils {
 

@@ -58,7 +58,7 @@ export class CardDetailComponent implements OnInit {
     moveItemInArray(this.card.fields, event.previousIndex, event.currentIndex);
   }
 
-  returnToList() {
-    this.router.navigateByUrl('/list');
+  async returnToList() {
+    await this.router.navigateByUrl('/list');
   }
 }
