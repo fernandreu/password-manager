@@ -4,6 +4,7 @@ import {Utils} from 'src/app/model/utils';
 import {Dropbox} from 'dropbox';
 import {ICloudService} from './cloud-service';
 import fetch from 'isomorphic-fetch';
+import {FileUtils} from '../model/file';
 
 const CLIENT_ID = 'fe6hp2qg2ipodyz';
 
@@ -24,60 +25,36 @@ export class DropboxService implements ICloudService {
     return Utils.parseQueryString(hash)['access_token'];
   }
 
-  private loadData(dbx: any): Promise<ArrayBuffer> {
-    return new Promise(((resolve, reject) => {
-      dbx.filesDownload({ path: '/data.json' })
-        .then(metaData => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const encryptedData = reader.result as ArrayBuffer;
-            resolve(encryptedData);
-          };
-          reader.readAsBinaryString(metaData.fileBlob);
-        })
-        .catch(reject);
-    }));
+  private async loadData(dbx: any): Promise<ArrayBuffer> {
+    const metaData = await dbx.filesDownload({ path: '/data.json' });
+    return await FileUtils.readAsBinaryStringAsync(metaData.fileBlob);
   }
 
-  getData(accessToken: string): Promise<ArrayBuffer> {
+  async getData(accessToken: string): Promise<ArrayBuffer> {
     const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
-    return new Promise((resolve, reject) => {
-      dbx.filesGetMetadata({ path: '/data.json' })
-        .then( metaData => {
-           this.loadData(dbx)
-             .then(resolve)
-             .catch(reject);
-        })
-        .catch(reject);
-    });
+    await dbx.filesGetMetadata({ path: '/data.json' });
+    const data = await this.loadData(dbx);
+    console.log('Data:', data);
+    return data;
   }
 
-  saveData(accessToken: string, data: any, passwordHash: string): Promise<boolean> {
+  async saveData(accessToken: string, data: any, passwordHash: string) {
     const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
     const encrypted = Utils.encryptData(data, passwordHash);
     // Save a backup first
     const backupPath = '/data-' + new Date() + '.json';
-    return new Promise( (resolve, reject) => {
-      this.renameFile('/data.json', backupPath, accessToken)
-        .then(() => {
-          dbx.filesUpload({path: '/data.json', contents: encrypted, mode: {'.tag': 'overwrite'}})
-            .then(() => resolve(true))
-            .catch((error) => {
-              // Call reject, but not without renaming back the backup first
-              this.renameFile(backupPath, '/data.json', accessToken)
-                .finally(() => reject(error));
-            });
-        })
-        .catch(reject);
-    });
+    await this.renameFile('/data.json', backupPath, accessToken);
+    try {
+      await dbx.filesUpload({path: '/data.json', contents: encrypted, mode: {'.tag': 'overwrite'}});
+    } catch (ex) {
+      // Rethrow, but not without renaming back the backup first
+      await this.renameFile(backupPath, '/data.json', accessToken);
+      throw ex;
+    }
   }
 
-  private renameFile(oldName: string, newName: string, accessToken: string): Promise<boolean> {
+  private async renameFile(oldName: string, newName: string, accessToken: string) {
     const dbx = new Dropbox({ accessToken: accessToken, fetch: fetch } as any);
-    return new Promise((resolve, reject) => {
-      dbx.filesMoveV2({ from_path: oldName, to_path: newName, autorename: true })
-        .then(() => resolve(true))
-        .catch(reject);
-    });
+    await dbx.filesMoveV2({ from_path: oldName, to_path: newName, autorename: true });
   }
 }

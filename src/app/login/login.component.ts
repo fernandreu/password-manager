@@ -34,21 +34,20 @@ export class LoginComponent implements OnInit {
     @Inject(DataService) private dataService: IDataService,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     const service = this.cloudServiceProvider.getCloudService();
-    service.getData(service.getAccessTokenByLocation(location))
-      .then(result => {
-        this.encryptedData = result;
-      })
-      .catch(err => {
-        // This should hopefully mean the data does not exist. If so, offer a second password field to confirm it
-        console.error(err);
-        this.newAccount = true;
-      })
-      .finally(() => this.loading = false);
+    try {
+      this.encryptedData = await service.getData(service.getAccessTokenByLocation(location));
+    } catch (err) {
+      // This should hopefully mean the data does not exist. If so, offer a second password field to confirm it
+      console.error(err);
+      this.newAccount = true;
+    } finally {
+      this.loading = false;
+    }
   }
 
-  logIn() {
+  async logIn() {
     // console.log(`The password is: ${this.password}`);
 
     const hash = Utils.passwordHash(this.password);
@@ -68,7 +67,7 @@ export class LoginComponent implements OnInit {
     this.dataService.passwordHash = hash;
     this.dataService.session = session;
     this.dataService.accessToken = this.cloudServiceProvider.getCloudService().getAccessTokenByLocation(location);
-    this.router.navigateByUrl('/list');
+    await this.router.navigateByUrl('/list');
   }
 
   /**
