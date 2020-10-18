@@ -3,7 +3,8 @@ const config = require('./protractor.conf').config;
 config.capabilities = {
     browserName: 'chrome',
     chromeOptions: {
-        args: ['--headless', '--no-sandbox']
+        args: ['--headless', '--no-sandbox'],
+        binary: '/usr/bin.chromium-browser'
     }
 };
 
