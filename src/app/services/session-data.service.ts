@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 import { PassSession } from 'src/app/model/pass-model';
 import {IDataService} from './data-service';
 
+const CloudServiceKey = 'cloudService';
 const PasswordHashKey = 'passwordHash';
 const SessionKey = 'passSession';
 const AccessTokenKey = 'accessToken';
@@ -19,13 +20,19 @@ const AccessTokenKey = 'accessToken';
 })
 export class SessionDataService implements IDataService {
 
-  public cloudService = 'dropbox';
-
+  private _cloudService: string = null;
   private _passwordHash: string = null;
   private _session: PassSession = null;
   private _accessToken: string = null;
 
   constructor() { }
+
+  get cloudService() {
+    if (this._cloudService === null) {
+      this._cloudService = sessionStorage.getItem(CloudServiceKey);
+    }
+    return this._cloudService;
+  }
 
   get passwordHash() {
     if (this._passwordHash === null) {
@@ -49,6 +56,14 @@ export class SessionDataService implements IDataService {
       this._accessToken = sessionStorage.getItem(AccessTokenKey);
     }
     return this._accessToken;
+  }
+
+  set cloudService(value: string) {
+    if (this._cloudService === value) {
+      return;
+    }
+    this._cloudService = value;
+    sessionStorage.setItem(CloudServiceKey, value);
   }
 
   set passwordHash(value: string) {

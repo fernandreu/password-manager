@@ -35,9 +35,22 @@ export class LoginComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    const service = this.cloudServiceProvider.getCloudService();
+    let token = this.dataService.accessToken;
+    if (token === null) {
+      const service = this.cloudServiceProvider.cloudService;
+      console.log('service:', service);
+      try {
+        token = service.getAccessTokenByLocation(location);
+      } catch (err) {
+        console.error('Access token not defined on route');
+        await this.router.navigateByUrl('/landing');
+        return;
+      }
+    }
+
     try {
-      this.encryptedData = await service.getData(service.getAccessTokenByLocation(location));
+      const service = this.cloudServiceProvider.cloudService;
+      this.encryptedData = await service.getData(token);
     } catch (err) {
       // This should hopefully mean the data does not exist. If so, offer a second password field to confirm it
       console.error(err);
@@ -66,7 +79,7 @@ export class LoginComponent implements OnInit {
 
     this.dataService.passwordHash = hash;
     this.dataService.session = session;
-    this.dataService.accessToken = this.cloudServiceProvider.getCloudService().getAccessTokenByLocation(location);
+    this.dataService.accessToken = this.cloudServiceProvider.cloudService.getAccessTokenByLocation(location);
     await this.router.navigateByUrl('/list');
   }
 

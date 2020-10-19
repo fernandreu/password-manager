@@ -47,10 +47,12 @@ export class CardListComponent implements OnInit {
     this.applyFilter();
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    console.log('Going to list');
     const session = this.dataService.session;
     if (session === null) {
-      this.router.navigateByUrl('/landing');
+      await this.router.navigateByUrl('/landing');
+      return;
     }
     this.fullData = session.cards;
     this.data = this.fullData;
@@ -71,7 +73,7 @@ export class CardListComponent implements OnInit {
   }
 
   saveSession() {
-    this.cloudServiceProvider.getCloudService().saveData(
+    this.cloudServiceProvider.cloudService.saveData(
       this.dataService.accessToken,
       this.dataService.session,
       this.dataService.passwordHash

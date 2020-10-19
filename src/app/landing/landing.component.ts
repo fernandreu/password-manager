@@ -1,6 +1,7 @@
 // Component for the landing page, hence the name
-import {Component, OnInit} from '@angular/core';
-import {DropboxService} from 'src/app/services/dropbox-service';
+import {Component, Inject, OnInit} from '@angular/core';
+import {DataService, IDataService} from '../services/data-service';
+import {CloudServiceProvider} from '../services/cloud-service-provider';
 
 @Component({
   selector: 'app-landing',
@@ -10,13 +11,21 @@ import {DropboxService} from 'src/app/services/dropbox-service';
 export class LandingComponent implements OnInit {
 
   constructor(
-    private dropboxService: DropboxService
+    @Inject(DataService) private dataService: IDataService,
+    private cloudServiceProvider: CloudServiceProvider
   ) { }
 
   ngOnInit() {
   }
 
-  dropboxAuthUrl(): string {
-    return this.dropboxService.getAuthenticationUrl();
+  async logIn(provider: string) {
+    this.dataService.accessToken = null;
+    this.dataService.cloudService = provider;
+    const service = this.cloudServiceProvider.cloudService;
+    try {
+      await service.logIn();
+    } catch (err) {
+      console.error('Error logging in:', err);
+    }
   }
 }

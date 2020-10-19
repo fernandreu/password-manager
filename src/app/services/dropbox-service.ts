@@ -17,6 +17,14 @@ export class DropboxService implements ICloudService {
     return dbx.getAuthenticationUrl(environment.baseUrl + '/login');
   }
 
+  getName(): string {
+    return 'dropbox';
+  }
+
+  async logIn(): Promise<void> {
+    window.location.href = this.getAuthenticationUrl();
+  }
+
   getAccessTokenByLocation(location: Location) {
     return this.getAccessTokenByHash(location.hash);
   }

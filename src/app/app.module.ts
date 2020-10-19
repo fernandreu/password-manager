@@ -16,6 +16,8 @@ import {DataService} from './services/data-service';
 import {SessionDataService} from './services/session-data.service';
 import {CloudServiceProvider} from './services/cloud-service-provider';
 import {IconsModule} from './icons.module';
+import {MsalModule} from '@azure/msal-angular';
+import {OAuthSettings} from './services/onedrive-service';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,14 @@ import {IconsModule} from './icons.module';
     MaterialModule,
     DragDropModule,
     IconsModule,
+    MsalModule.forRoot({
+      auth: {
+        clientId: OAuthSettings.appId
+      }
+    }, {
+      popUp: true,
+      consentScopes: ['user.read']
+    })
   ],
   providers: [
     CloudServiceProvider,

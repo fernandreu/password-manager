@@ -7,9 +7,13 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <a mat-raised-button color="primary" [href]="dropboxAuthUrl()">
+    <a mat-raised-button color="primary" (click)="logIn('dropbox')">
       <fa-icon [icon]="['fab', 'dropbox']"></fa-icon>
       Sign In with Dropbox
+    </a>
+    <a mat-raised-button color="primary" (click)="logIn('onedrive')">
+      <fa-icon [icon]="['fas', 'cloud']"></fa-icon>
+      Sign In with OneDrive
     </a>
   </mat-card-actions>
 </mat-card>
